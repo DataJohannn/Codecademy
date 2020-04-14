@@ -1,0 +1,84 @@
+-- This is the first query:
+
+SELECT DISTINCT year from population_years;
+
+-- Add your additional queries below:
+
+-- 1. What is the largest population size for Gabon in this dataset?
+
+SELECT * 
+FROM population_years
+ WHERE country LIKE 'gabon'
+ ORDER BY population ASC;
+ 
+## Result: Gabon 1.54526	2010 
+
+-- 2. What were the 10 lowest population countries in 2005?
+
+SELECT * FROM population_years
+WHERE year = 2005
+ORDER BY population ASC
+LIMIT 10;
+
+## Result:
+  Niue	0.00216	2005
+  Falkland Islands (Islas Malvinas)	0.00297	2005
+  Montserrat	0.00453	2005
+  Saint Pierre and Miquelon	0.0062	2005
+  Saint Helena	0.00748	2005
+  Nauru	0.01001	2005
+  Cook Islands	0.0136	2005
+  Turks and Caicos Islands	0.02057	2005
+  Virgin Islands, British	0.02268	2005
+  Gibraltar	0.02846	2005 ##
+  
+  -- 3. What are all the distinct countries with a population of over 100 million in the year 2010?
+  
+SELECT DISTINCT * from population_years
+WHERE population > 100
+AND year = 2010;
+
+## Result: 
+Mexico	112.46886	2010
+United States	310.23286	2010
+Brazil	201.10333	2010
+Russia	139.39021	2010
+Nigeria	152.21734	2010
+Bangladesh	156.11846	2010
+China	1330.14129	2010
+India	1173.10802	2010
+Indonesia	242.96834	2010
+Japan	126.80443	2010
+Pakistan	184.40479	2010 ##
+
+-- 4. How many countries in this dataset have the word “Islands” in their name?
+
+SELECT * from population_years
+WHERE country LIKE '%Islands%';
+
+## Result: 9
+  Cayman Islands
+  Falkland Islands (Islas Malvinas)
+  Turks and Caicos Islands
+  Virgin Islands, U.S.
+  Virgin Islands, British
+  Faroe Islands
+  Cook Islands
+  Solomon Islands
+  U.S. Pacific Islands ##
+  
+ -- 5. What is the difference in population between 2000 and 2010 in Indonesia?
+ 
+SELECT * from population_years
+WHERE country LIKE 'Indonesia'
+AND year BETWEEN 2000 AND 2010
+ORDER BY year DESC;
+
+## Result: 28.29
+  Indonesia	242.96834	2010
+  Indonesia	214.67661	2000##
+
+
+
+
+ 
