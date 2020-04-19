@@ -1,0 +1,53 @@
+// selects all columns from table
+SELECT *
+FROM startups;
+
+// counts all rows
+SELECT COUNT(*)
+FROM startups;
+
+// Adds the total valuation for all startups
+SELECT SUM(valuation) AS 'market cap'
+FROM startups;
+
+// returns maximium $ raised by startup in seed stage
+SELECT MAX(raised)
+FROM startups
+WHERE stage LIKE 'Seed';
+
+// returns oldest company
+SELECT MIN(founded)
+FROM startups;
+
+// returns average valuation for all startups
+SELECT AVG(valuation)
+FROM startups;
+
+// returns average valuation for all startups for each category
+SELECT category,
+  AVG(valuation)
+FROM startups
+GROUP BY category;
+
+// returns average valuation (rounded to two decimal places) for all startups for each category in high to low order
+SELECT category,
+ ROUND(AVG(valuation), 2)
+FROM startups
+GROUP BY category
+ORDER BY 2 DESC;
+
+//returns number of companies per category having more than 3 startups ordered in descending order
+SELECT category,
+COUNT(*) AS 'amount'
+FROM startups
+GROUP BY 1
+HAVING amount > 3
+ORDER BY amount DESC;
+
+// returns average head count per company filtered by location from startups having an average of more than 500 employees in descending order
+SELECT location,
+AVG(employees) AS 'average'
+FROM startups
+GROUP BY 1
+HAVING average > 500
+ORDER BY 2 DESC;
