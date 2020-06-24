@@ -1,0 +1,66 @@
+/* For this project, I worked with two tables to answer different questions */
+
+
+-- 3. How many entries in the countries table are from Africa?
+
+SELECT COUNT(*)
+FROM countries
+WHERE continent LIKE 'Africa';
+
+-- 4. What was the total population of the continent of Oceania in 2005?
+
+SELECT continent,
+ SUM(population),
+ year
+FROM countries c
+LEFT JOIN population_years p
+  ON p.country_id = c.id
+WHERE continent LIKE 'oceania'
+  AND year = 2005;
+
+-- 5. What is the average population of countries in South America in 2003?
+
+SELECT continent,
+ AVG(population),
+ year
+FROM countries c
+LEFT JOIN population_years p
+  ON p.country_id = c.id
+WHERE continent LIKE 'south america'
+  AND year = 2003;
+
+-- 6. What country had the smallest population in 2007?
+
+SELECT name,
+ MIN(population),
+ year
+FROM countries c
+LEFT JOIN population_years p
+  ON p.country_id = c.id
+WHERE year = 2007;
+
+-- 7. What is the average population of Poland during the time period covered by this dataset?
+
+SELECT name,
+  AVG(population)
+FROM countries c
+LEFT JOIN population_years p
+  ON p.country_id = c.id
+WHERE name LIKE 'Poland';
+
+-- 8. How many countries have the word “The” in their name?
+
+SELECT COUNT(*)
+FROM countries
+WHERE name LIKE '%the%';
+
+-- 9. What was the total population of each continent in 2010?
+
+SELECT continent,
+  SUM(population) AS 'Total population',
+  year
+FROM countries c
+LEFT JOIN population_years p
+  ON p.country_id = c.id
+WHERE year = 2010
+GROUP BY continent;
