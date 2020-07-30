@@ -1,0 +1,38 @@
+# Using phyton, I write functions to determine the cheapest shipping option for customer of Sal's Shipping
+
+premium_ground = 125
+
+def cost_ground_shipping(weight):
+  if weight <= 2:
+    return 20+weight * 1.5
+  if weight > 2 and weight <=6:
+    return 20+weight * 3
+  if weight > 6 and weight <= 10:
+    return 20+weight * 4
+  if weight > 10:
+    return 20+weight *4.75
+
+
+print(cost_ground_shipping(8.4))
+
+def cost_drone_shipping(weight):
+  if weight <= 2:
+    return weight * 4.5
+  if weight > 2 and weight <=6:
+    return weight * 9
+  if weight > 6 and weight <= 10:
+    return weight * 12
+  if weight > 10:
+    return weight *14.25
+  
+print(cost_drone_shipping(1.5))
+
+def best_method(weight):
+  if cost_ground_shipping(weight) < cost_drone_shipping(weight) and cost_ground_shipping(weight) < premium_ground:
+    return "Ground is the cheapest " + str(cost_ground_shipping(weight))
+  if cost_drone_shipping(weight) < cost_ground_shipping(weight) and cost_drone_shipping(weight) < premium_ground:
+    return "Drone is the cheapest " + str(cost_ground_shipping(weight))
+  else:
+    return "Premium ground is the cheapest " + str(premium_ground)
+
+print(best_method(4.8))
