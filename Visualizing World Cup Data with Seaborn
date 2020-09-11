@@ -1,0 +1,41 @@
+# In this project, I visualize data from the FIFA World Cup. Data provided by Kaggle
+
+# I import all ther libraries needed to plot the data
+import codecademylib3_seaborn
+from matplotlib import pyplot as plt
+import pandas as pd
+import seaborn as sns
+
+# I load the data into a dataframe using pandas
+
+df = pd.read_csv('WorldCupMatches.csv')
+
+# I create a new column which is equal to the sum of all goals scored each match
+
+df['Total Goals'] = df['Home Team Goals'] + df['Away Team Goals']
+
+print(df.head())
+
+#I set up style and data for my plot
+
+sns.set_style('whitegrid')
+sns.set_context('poster', font_scale=0.8)
+f, ax = plt.subplots(figsize = (12, 7))
+ax = sns.barplot(df['Year'], df['Total Goals'])
+ax.set_title('Total Goals Scored Each Year')
+
+plt.show()
+
+# I load goals.csv into a data frame using pandas
+
+df_goals = pd.read_csv('goals.csv')
+
+print(df_goals.head())
+
+sns.set_context('notebook', font_scale=1.25)
+
+f, ax2 = plt.subplots(figsize=(12, 7))
+ax = sns.boxplot(df_goals['year'], df_goals['goals'], palette='Spectral')
+ax.set_title('Goals Scored Each Year')
+
+plt.show()
